@@ -14,3 +14,6 @@ SKU , Inventory, daily order quantity, expiry date ,unit price, reorder time, sa
 
 (g) start aksing questing like brief summary of mdodel 
 List skus with expiry date , expected loss , when to reorder
+
+Linkedin URL: for project: 
+https://www.linkedin.com/posts/suraj-kumar-590695114_llm-python-ai-activity-7352302446410416128-enRV?utm_source=share&utm_medium=member_desktop&rcm=ACoAAByTxfwByDgsGy2-8TK-O42CK6gZFg7VbVM
