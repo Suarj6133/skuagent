@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ask Your Question</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+    <h2>Ask a question about the data</h2>
+    <p class="help-text">
+        [sku, inventory, daily_order_quantity, expiry_date, re_order_time(in days), safety_stock]
+    </p>
+
+    <!-- Ask Question Form -->
+    <form method="POST" action="/">
+        <input type="text" name="question" size="80" placeholder="e.g. ask questions?" required>
+        <button type="submit">Ask</button>
+    </form>
+
+    <!-- Clear Chat Button -->
+    <form method="POST" action="/" style="margin-top:10px;">
+        <input type="hidden" name="clear" value="1">
+        <button type="submit">🧹 Clear Chat</button>
+    </form>
+
+    <hr>
+
+    {% if history %}
+        {% for entry in history %}
+            <div class="chat-entry">
+                <p><strong>Q:</strong> {{ entry.question }}</p>
+                <p><strong>Generated SQL:</strong><br>{{ entry.sql }}</p>
+                <p><strong>Answer:</strong><br>{{ entry.answer|safe }}</p>
+                {% if entry.note %}
+                    <p class="note"><em>{{ entry.note }}</em></p>
+                {% endif %}
+                <!-- ✅ Download Button (Excel) -->
+                {% if loop.last %}  <!-- Only show for latest response -->
+                <a href="{{ url_for('download') }}" class="btn">⬇️ Download Excel</a>
+                {% endif %}
+                <hr>
+            </div>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
