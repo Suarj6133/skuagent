@@ -1,19 +1,61 @@
-Summary of model
-This model gives real time answers for day to day planning of sku which can frequenty expiry date(perishable items). 
+# 🧠 AI Grocery Agent — LLM + Python
 
-(a) column label:
-SKU , Inventory, daily order quantity, expiry date ,unit price, reorder time, safety stock (inventory/daily order qty + 10% as safety margin)
+This project is an AI-powered assistant designed to answer real-time, natural language questions related to SKU (Stock Keeping Unit) planning for perishable grocery items. It helps optimize inventory management, reduce waste, and make better reorder decisions using a local LLM (Ollama) integrated with Python.
 
-(b) Requirements Ollama (as LLM) before proceeding ahead. If using chatGPT/ Gemini make changes in the llm_agent.py
+## 📌 Summary of the Model
 
-(c) the data is grocery_data.xlsx file
-(d) the data is loaded into the db and then query is perfomred.
-(e) For advance analysis- Python is integrating in to analysis.py
+This model provides real-time answers for day-to-day planning of grocery SKUs, especially those with short shelf lives (perishable items). It uses a local language model (via Ollama) to interpret natural language queries and provide structured, actionable insights from a backend database.
 
-(f) for running - install ollama -> type python load_csv.py in terminal - > python app.py in terminal and start!! 
+---
 
-(g) start aksing questing like brief summary of mdodel 
-List skus with expiry date , expected loss , when to reorder
+## 🗂️ Dataset Overview
 
-Linkedin URL: for project: 
-https://www.linkedin.com/posts/suraj-kumar-590695114_llm-python-ai-activity-7352302446410416128-enRV?utm_source=share&utm_medium=member_desktop&rcm=ACoAAByTxfwByDgsGy2-8TK-O42CK6gZFg7VbVM
+### Column Labels:
+- `SKU`: Item identifier
+- `Inventory`: Current stock
+- `Daily Order Quantity`: Avg. daily demand
+- `Expiry Date`: When the product expires
+- `Unit Price`: Cost per item
+- `Reorder Time`: Time needed to restock
+- `Safety Stock`: *(Inventory / Daily Order Qty) + 10% buffer*
+
+---
+
+## ⚙️ Requirements
+
+- Python 3.10+
+- [Ollama](https://ollama.com) (required to run the LLM locally)
+
+> 💡 If you prefer using ChatGPT or Gemini APIs instead of Ollama, modify `llm_agent.py` accordingly.
+
+---
+
+## 📁 Data Input
+
+- Input file: `grocery_data.xlsx`
+- Data is loaded and converted into SQLite format (`grocery_data.db`) using `load_csv.py`
+
+---
+
+## 🧠 How It Works
+
+1. Natural language questions are interpreted via LLM (Ollama).
+2. The query handler and prompt builder convert user input into meaningful database queries.
+3. Python functions in `analysis.py` offer advanced calculations (e.g., expected loss, reorder planning).
+4. The agent returns concise, helpful responses based on structured data.
+
+---
+
+## 🚀 Getting Started
+
+### Step-by-Step Instructions:
+
+```bash
+# Step 1: Install Ollama
+https://ollama.com/download
+
+# Step 2: Load the dataset into the database
+python load_csv.py
+
+# Step 3: Launch the AI agent
+python app.py
